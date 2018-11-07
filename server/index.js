@@ -16,4 +16,6 @@ app.all('/', (req, res) => {
   res.send('hello from server');
 });
 
+app.use(express.static('public'));
+
 app.listen(3000, () => console.log('listening on 3000'));
