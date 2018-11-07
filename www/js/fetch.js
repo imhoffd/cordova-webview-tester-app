@@ -1,11 +1,13 @@
 document.addEventListener('deviceready', () => {
   console.log('deviceready received');
 
-  document.getElementById('send-get').addEventListener('click', () => {
+  document.getElementById('send-get').addEventListener('click', event => {
+    event.preventDefault();
     sendGET();
   });
 
-  document.getElementById('send-post').addEventListener('click', () => {
+  document.getElementById('send-post').addEventListener('click', event => {
+    event.preventDefault();
     sendPOST();
   });
 });

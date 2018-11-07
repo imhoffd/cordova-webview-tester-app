@@ -1,15 +1,14 @@
-onmessage = function(e) {
-    console.log('worker: hello I got a message');
-    console.log('worker: and here it is:', e);
-    console.log('now I will do work');
+document.addEventListener('deviceready', () => {
+  console.log('deviceready received');
 
-    setTimeout(() => {
-        const req = new XMLHttpRequest();
-        req.addEventListener('load', function () {
-            console.log('worker: loaded a thing', this.responseText);
-            postMessage('thanks');
-        });
-        req.open('POST', 'http://10.0.1.237:3000');
-        req.send('here is some datar');
-    }, 500);
-}
+  console.log('spinning up worker');
+
+  setTimeout(() => {
+    const worker = new Worker('js/worker-worker.js');
+
+    worker.postMessage(['what', 'up', 'fren']);
+    worker.onmessage = e => {
+      console.log('received message from worker:', e);
+    };
+  }, 1000);
+});
