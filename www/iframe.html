@@ -11,11 +11,15 @@
 
         <h2>Local</h2>
 
-        <iframe width="300" height="200" src="./iframe-content.html">remote doesn't work</iframe>
+        <iframe width="300" height="200" src="./iframe-content.html">local doesn't work</iframe>
 
         <h2>Remote</h2>
 
-        <iframe width="300" height="200" src="http://10.0.1.237:3000">remote doesn't work</iframe>
+        <iframe width="300" height="200" src="http://webviewtests.000webhostapp.com/nocors/iframe-content.html">remote without CORS doesn't work</iframe>
+
+        <h2>Remote with CORS</h2>
+
+        <iframe width="300" height="200" src="http://webviewtests.000webhostapp.com/cors/iframe-content.html">remote with CORS doesn't work</iframe>
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/iframe.js"></script>

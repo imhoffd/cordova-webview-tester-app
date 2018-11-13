@@ -15,9 +15,22 @@ document.addEventListener('deviceready', () => {
     }, error => console.error(error));
   });
 
-  // document.getElementById('read-file', () => {
-  //   readFile();
-  // });
+  document.getElementById('read-file').addEventListener('click', event => {
+    event.preventDefault();
+    requestFileSystem(LocalFileSystem.PERSISTENT, 0, fs => {
+      console.log('fs opened:', fs);
+
+      fs.root.getFile('myPersistentFile.txt', { create: true, exclusive: false }, fileEntry => {
+        console.log('fileEntry:', fileEntry);
+        readFile(fileEntry);
+      }, error => console.error(error));
+    }, error => console.error(error));
+  });
+
+  document.getElementById('clear').addEventListener('click', event => {
+    event.preventDefault();
+    displayFileData('');
+  });
 
 });
 

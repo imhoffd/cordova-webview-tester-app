@@ -4,8 +4,19 @@ document.addEventListener('deviceready', () => {
   document.getElementById('download-video-file').addEventListener('click', event => {
     event.preventDefault();
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://10.0.1.237:3000/big_buck_bunny.mp4', true);
+    downloadVideo('http://webviewtests.000webhostapp.com/nocors/big_buck_bunny.mp4');
+  });
+
+  document.getElementById('download-video-file-cors').addEventListener('click', event => {
+    event.preventDefault();
+
+    downloadVideo('http://webviewtests.000webhostapp.com/cors/big_buck_bunny.mp4');
+  });
+});
+
+function downloadVideo(url) {
+  const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
     xhr.responseType = 'blob';
 
     xhr.onload = function() {
@@ -18,8 +29,7 @@ document.addEventListener('deviceready', () => {
     };
 
     xhr.send();
-  });
-});
+}
 
 function saveFile(fileData) {
   requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, fs => {
